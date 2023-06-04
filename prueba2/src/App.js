@@ -1,24 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+///////////////////////////////////////////////////**/ */
+import Juegos from "./COMPONENTES/Juegos/Juegos";
+import CrearJuego from "./COMPONENTES/Crear juego/CrearJuego";
+import Landing from "./COMPONENTES/Landing/Landing";
+/*//////////////////////////////////////////////////// */
+import axios from "axios";
+import Detalles from "./COMPONENTES/Detalles/Detalles";
+
+axios.defaults.baseURL = "https://spa-videogames-production.up.railway.app/";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <Routes>
+          <Route exact path="/" element={<Landing></Landing>} />
+          <Route exact path="/juegos" element={<Juegos></Juegos>} />
+          <Route
+            exact
+            path="/agregar-juego"
+            element={<CrearJuego></CrearJuego>}
+          />
+          <Route
+            exact
+            path="juegos/:id"
+            element={<Detalles></Detalles>}
+          ></Route>
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 
